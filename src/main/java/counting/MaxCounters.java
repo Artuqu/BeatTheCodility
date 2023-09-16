@@ -2,7 +2,7 @@ package counting;
 
 import java.util.Arrays;
 
-public class MaxCounter {
+public class MaxCounters {
 
 
     public static int[] solution(int N, int[] A) {
