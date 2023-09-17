@@ -1,3 +1,5 @@
+package iterations;
+
 public class BinaryGap {
 
     public static int solution(int N) {
