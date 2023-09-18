@@ -32,12 +32,24 @@ public class MaxNonoverlappingSegments {
         }
     }
 
+    public int solution2(int[] A, int[] B) {
+        int lastEndSegment = -1;
+        int chosenCount = 0;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] > lastEndSegment) {
+                chosenCount++;
+                lastEndSegment = B[i];
+            }
+        }
+        return chosenCount;
+    }
+
     public static void main(String[] args) {
         int[] A = {1, 3, 7, 9, 9};
         int[] B = {5, 6, 8, 9, 10};
         int[] A1 = {};
         int[] B1 = {};
-        System.out.println(new MaxNonoverlappingSegments().solution(A1, B1));
-        System.out.println(new MaxNonoverlappingSegments().solution(A, B));
+        System.out.println(new MaxNonoverlappingSegments().solution2(A1, B1));
+        System.out.println(new MaxNonoverlappingSegments().solution2(A, B));
     }
 }
