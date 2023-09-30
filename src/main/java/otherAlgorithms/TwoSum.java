@@ -1,6 +1,8 @@
 package otherAlgorithms;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TwoSum {
 
@@ -15,8 +17,19 @@ public class TwoSum {
         return twoSumHelper(i, j + 1, nums, target);
     }
 
+
+    public int[] solution2(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int difference = target - nums[i];
+            map.put(nums[i], i);
+            if (map.containsKey(difference)) return new int[]{map.get(difference), i};
+        }
+        return new int[]{};
+    }
+
     public static void main(String[] args) {
         int[] nums = {1, 5, 9, 11, 12};
-        System.out.println(Arrays.toString(new TwoSum().solution(nums, 21)));
+        System.out.println(Arrays.toString(new TwoSum().solution2(nums, 21)));
     }
 }
