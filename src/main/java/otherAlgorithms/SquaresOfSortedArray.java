@@ -17,6 +17,30 @@ public class SquaresOfSortedArray {
         return result;
     }
 
+    //O(n) time complexity
+    public int[] solution2(int[] A) {
+        if (A == null) {
+            return new int[]{};
+        }
+        int n = A.length - 1;
+        int[] result = new int[A.length];
+        int left = 0;
+        int right = n, index = n;
+        while (left <= right) {
+            int number;
+            if (Math.abs(A[right]) > Math.abs(A[left])) {
+                number = right;
+                right--;
+            } else {
+                number = left;
+                left++;
+            }
+            result[index] = A[number] * A[number];
+            index--;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         int[] A = {-4, -1, 0, 3, 10};
         int[] A1 = {-7, -3, 2, 3, 11};
