@@ -42,7 +42,7 @@ public class RomanToIntegers {
         int result = 0;
         for (int i = 0; i < s.length(); i++) {
             Character c1 = s.charAt(i);
-            Character c2 = i + 1 != s.length() ? s.charAt(i + 1) : null;
+            Character c2 = i + 1 < s.length() ? s.charAt(i + 1) : null;
             if (specialCases(c1, c2) != null) {
                 result += specialCases(c1, c2);
                 i++;
