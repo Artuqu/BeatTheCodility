@@ -6,6 +6,7 @@ public class XorBitAlgorithm {
 
     //    O(n) time complexity
     public int solution(int[] A) {
+        if (A == null || A.length == 0) return 0;
         int result = 0;
         for (int num : A) {
             result = result ^ num;
@@ -15,6 +16,7 @@ public class XorBitAlgorithm {
 
     //O(n log(n)) time complexity
     public int solution2(int[] A) {
+        if (A == null || A.length == 0) return 0;
         Arrays.sort(A);
         int length = A.length;
         if (A.length == 1) return A[0];
@@ -30,6 +32,8 @@ public class XorBitAlgorithm {
 
     public static void main(String[] args) {
         int[] A = {1, 2, 3, 2, 3};
-        System.out.println(new XorBitAlgorithm().solution(A));
+        int[] A1 = {};
+        int[] A2 = null;
+        System.out.println(new XorBitAlgorithm().solution2(A2));
     }
 }

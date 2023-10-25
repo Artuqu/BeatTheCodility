@@ -1,0 +1,34 @@
+package otherAlgorithms;
+
+import java.util.Arrays;
+
+public class ContainsDuplicate {
+
+    public boolean solution(int[] A) {
+        if (A == null) return false;
+        Arrays.sort(A);
+        int max = A[A.length - 1];
+        int[] duplicates = new int[max + 1];
+        for (int num : A) {
+            duplicates[num]++;
+        }
+        for (int num : duplicates) {
+            if (num > 1) return true;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        int[] A = {1, 2, 3, 1};
+        int[] A1 = {1, 2, 3, 4};
+        int[] A2 = {1, 1, 1, 3, 3, 4, 3, 2, 4, 2};
+        int[] A3 = {1};
+        int[] A4 = null;
+        System.out.println(new ContainsDuplicate().solution(A));
+        System.out.println(new ContainsDuplicate().solution(A1));
+        System.out.println(new ContainsDuplicate().solution(A2));
+        System.out.println(new ContainsDuplicate().solution(A3));
+        System.out.println(new ContainsDuplicate().solution(A4));
+
+    }
+}
