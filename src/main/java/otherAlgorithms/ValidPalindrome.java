@@ -24,10 +24,19 @@ public class ValidPalindrome {
         return true;
     }
 
+    public boolean solution2(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (char ch : s.toCharArray())
+            if (Character.isLetterOrDigit(ch)) sb.append(Character.toLowerCase(ch));
+        String filteredString = sb.toString();
+        String reversedString = sb.reverse().toString();
+        return filteredString.equals(reversedString);
+    }
+
     public static void main(String[] args) {
         String s = " nan, ";
         String s1 = "race a car";
-        System.out.println(new ValidPalindrome().solution(s));
-        System.out.println(new ValidPalindrome().solution(s1));
+        System.out.println(new ValidPalindrome().solution2(s));
+        System.out.println(new ValidPalindrome().solution2(s1));
     }
 }
