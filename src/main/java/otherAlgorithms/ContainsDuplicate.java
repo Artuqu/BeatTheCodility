@@ -34,6 +34,7 @@ public class ContainsDuplicate {
         return false;
     }
 
+    //    O(n) time complexity
     public boolean solution3(int[] A) {
         if (A == null) return false;
         Set<Integer> cache = new HashSet<>();
@@ -43,6 +44,17 @@ public class ContainsDuplicate {
         return A.length != cache.size();
     }
 
+    //    O(n log (n))
+    public boolean solution4(int[] A) {
+        if (A == null) return false;
+        Arrays.sort(A);
+        for (int i = 0; i < A.length - 1; i++) {
+            if (A[i] == A[i + 1]) return true;
+        }
+        return false;
+    }
+
+
     public static void main(String[] args) {
         int[] A = {1, 2, 3, 1};
         int[] A1 = {1, 2, 3, 4};
@@ -50,12 +62,12 @@ public class ContainsDuplicate {
         int[] A3 = {1};
         int[] A4 = null;
         int[] A5 = {};
-        System.out.println(new ContainsDuplicate().solution3(A));
-        System.out.println(new ContainsDuplicate().solution3(A1));
-        System.out.println(new ContainsDuplicate().solution3(A2));
-        System.out.println(new ContainsDuplicate().solution3(A3));
-        System.out.println(new ContainsDuplicate().solution2(A4));
-        System.out.println(new ContainsDuplicate().solution2(A5));
+        System.out.println(new ContainsDuplicate().solution4(A));
+        System.out.println(new ContainsDuplicate().solution4(A1));
+        System.out.println(new ContainsDuplicate().solution4(A2));
+        System.out.println(new ContainsDuplicate().solution4(A3));
+        System.out.println(new ContainsDuplicate().solution4(A4));
+        System.out.println(new ContainsDuplicate().solution4(A5));
 
     }
 }
