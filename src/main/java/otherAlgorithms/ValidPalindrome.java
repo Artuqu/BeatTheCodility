@@ -33,10 +33,19 @@ public class ValidPalindrome {
         return filteredString.equals(reversedString);
     }
 
+    public boolean solution3(String s) {
+        StringBuilder sb = new StringBuilder();
+        s.chars()
+                .filter(Character::isLetterOrDigit)
+                .mapToObj(c -> Character.toLowerCase((char) c))
+                .forEach(sb::append);
+        return sb.toString().equals(sb.reverse().toString());
+    }
+
     public static void main(String[] args) {
         String s = " nan, ";
         String s1 = "race a car";
-        System.out.println(new ValidPalindrome().solution2(s));
-        System.out.println(new ValidPalindrome().solution2(s1));
+        System.out.println(new ValidPalindrome().solution3(s));
+        System.out.println(new ValidPalindrome().solution3(s1));
     }
 }
