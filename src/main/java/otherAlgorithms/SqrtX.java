@@ -19,9 +19,17 @@ public class SqrtX {
         return right;
     }
 
+//    recursion
+    public int solution2(int a) {
+        if (a < 2) return a;
+        int left = solution2(a >> 2) << 1;
+        int right = left + 1;
+        return (long) right * right > a ? left : right;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new SqrtX().solution(4));
-        System.out.println(new SqrtX().solution(16));
-        System.out.println(new SqrtX().solution(12));
+        System.out.println(new SqrtX().solution2(4));
+        System.out.println(new SqrtX().solution2(16));
+        System.out.println(new SqrtX().solution2(12));
     }
 }
