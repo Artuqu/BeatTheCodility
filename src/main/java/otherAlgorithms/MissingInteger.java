@@ -25,14 +25,23 @@ public class MissingInteger {
         throw new RuntimeException("Not found!");
     }
 
+//    O(n)
+    public int solution3(int[] A) {
+        int result = A.length;
+        for (int i = 0; i < A.length; i++) {
+            result ^= i ^ A[i];
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         int[] A = {1, 2, 3};
         int[] A1 = {0, 1, 2};
         int[] A2 = {0, 5, 3, 4, 2};
         int[] A3 = {};
-        System.out.println(new MissingInteger().solution2(A));
-        System.out.println(new MissingInteger().solution2(A1));
-        System.out.println(new MissingInteger().solution2(A2));
-        System.out.println(new MissingInteger().solution2(A3));
+        System.out.println(new MissingInteger().solution3(A));
+        System.out.println(new MissingInteger().solution3(A1));
+        System.out.println(new MissingInteger().solution3(A2));
+        System.out.println(new MissingInteger().solution3(A3));
     }
 }
