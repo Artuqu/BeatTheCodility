@@ -20,12 +20,29 @@ public class PlusOne {
         return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
+    public int[] solution2(int[] A) {
+        int length = A.length - 1;
+        for (int i = length; i >= 0; i--) {
+            if (A[i] == 9) A[i] = 0;
+            else {
+                A[i]++;
+                return A;
+            }
+        }
+        A = new int[length + 2];
+        A[0] = 1;
+        return A;
+    }
+
+
     public static void main(String[] args) {
         int[] A = {1, 2, 3};
         int[] A1 = {4, 3, 2, 1};
-        int[] A2 = {9};
-        System.out.println(Arrays.toString(new PlusOne().solution(A)));
-        System.out.println(Arrays.toString(new PlusOne().solution(A1)));
-        System.out.println(Arrays.toString(new PlusOne().solution(A2)));
+        int[] A2 = {9, 9};
+        int[] A3 = {2, 9, 9};
+        System.out.println(Arrays.toString(new PlusOne().solution2(A)));
+        System.out.println(Arrays.toString(new PlusOne().solution2(A1)));
+        System.out.println(Arrays.toString(new PlusOne().solution2(A2)));
+        System.out.println(Arrays.toString(new PlusOne().solution2(A3)));
     }
 }
