@@ -24,6 +24,17 @@ public class HappyNumber {
         return n == 1;
     }
 
+    //    no extra data structure
+    public boolean solution3(int n) {
+        int slow = n;
+        int fast = sumOfDigits(n);
+        while (fast != 1 && slow != fast) {
+            slow = sumOfDigits(slow);
+            fast = sumOfDigits(sumOfDigits(fast));
+        }
+        return fast == 1;
+    }
+
     private int sumOfDigits(int n) {
         int sum = 0;
         while (n > 0) {
@@ -45,10 +56,10 @@ public class HappyNumber {
     }
 
     public static void main(String[] args) {
-        System.out.println(new HappyNumber().solution2(9));
-        System.out.println(new HappyNumber().solution2(19));
-        System.out.println(new HappyNumber().solution2(116));
-        System.out.println(new HappyNumber().solution2(82));
-        System.out.println(new HappyNumber().solution2(1));
+        System.out.println(new HappyNumber().solution3(116));
+        System.out.println(new HappyNumber().solution3(9));
+        System.out.println(new HappyNumber().solution3(19));
+        System.out.println(new HappyNumber().solution3(82));
+        System.out.println(new HappyNumber().solution3(1));
     }
 }
