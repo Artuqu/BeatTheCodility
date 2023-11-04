@@ -17,6 +17,16 @@ public class IntersectionOfTwoLinkedList {
         return last != -1 ? last : null;
     }
 
+    public ListNode solution2(ListNode headA, ListNode headB) {
+        ListNode lA = headA;
+        ListNode lB = headB;
+        while (lA != lB) {
+            lA = (lA != null) ? lA.next : headB;
+            lB = (lB != null) ? lB.next : headA;
+        }
+        return lA;
+    }
+
     public static void main(String[] args) {
         List<Integer> firstList = List.of(4, 1, 8, 4, 5);
         LinkedList<Integer> first = new LinkedList<>(firstList);
@@ -27,7 +37,23 @@ public class IntersectionOfTwoLinkedList {
         List<Integer> fourthList = List.of(1, 2, 4, 5);
         LinkedList<Integer> fourth = new LinkedList<>(fourthList);
 
+        ListNode headA = new ListNode(3);
+        ListNode headB = new ListNode(1);
+
+        ListNode node1 = new ListNode(4);
+        ListNode node2 = new ListNode(5);
+        ListNode node3 = new ListNode(2);
+        ListNode node4 = new ListNode(8);
+
+        headA.next = node1;
+        node1.next = node2;
+
+        headB.next = node3;
+        node3.next = node1;
+        node2.next = node4;
+
         System.out.println(new IntersectionOfTwoLinkedList().solution(first, second));
         System.out.println(new IntersectionOfTwoLinkedList().solution(fourth, third));
+        System.out.println("Node version: " + new IntersectionOfTwoLinkedList().solution2(headA, headB).val);
     }
 }
