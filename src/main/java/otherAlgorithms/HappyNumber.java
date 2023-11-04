@@ -7,13 +7,31 @@ public class HappyNumber {
 
     public boolean solution(int n) {
         Set<Integer> cache = new HashSet<>();
-        while (n >= 1) {
-            if (cache.contains(1)) return true;
+        while (n != 1) {
             n = calculateNumber(n);
             if (cache.contains(n)) return false;
             cache.add(n);
         }
-        return false;
+        return true;
+    }
+
+    public boolean solution2(int n) {
+        Set<Integer> cache = new HashSet<>();
+        while (n != 1 && !cache.contains(n)) {
+            cache.add(n);
+            n = sumOfDigits(n);
+        }
+        return n == 1;
+    }
+
+    private int sumOfDigits(int n) {
+        int sum = 0;
+        while (n > 0) {
+            int digit = n % 10;
+            n = n / 10;
+            sum += digit * digit;
+        }
+        return sum;
     }
 
     private Integer calculateNumber(int n) {
@@ -27,10 +45,10 @@ public class HappyNumber {
     }
 
     public static void main(String[] args) {
-        System.out.println(new HappyNumber().solution(9));
-        System.out.println(new HappyNumber().solution(19));
-        System.out.println(new HappyNumber().solution(116));
-        System.out.println(new HappyNumber().solution(82));
-        System.out.println(new HappyNumber().solution(1));
+        System.out.println(new HappyNumber().solution2(9));
+        System.out.println(new HappyNumber().solution2(19));
+        System.out.println(new HappyNumber().solution2(116));
+        System.out.println(new HappyNumber().solution2(82));
+        System.out.println(new HappyNumber().solution2(1));
     }
 }
