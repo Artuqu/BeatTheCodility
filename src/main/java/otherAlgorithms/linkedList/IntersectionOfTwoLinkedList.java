@@ -27,10 +27,25 @@ public class IntersectionOfTwoLinkedList {
         return lA;
     }
 
+    // only if head is different from tail
+    public Integer solution3(LinkedList<Integer> a, LinkedList<Integer> b) {
+        int i = 1;
+        int j = 0;
+        int k = 0;
+        Integer aL = a.get(0);
+        Integer bL = b.get(0);
+        while (!Objects.equals(aL, bL) && j < b.size() && k < a.size()) {
+            aL = (i < a.size()) ? a.get(i) : b.get(j++);
+            bL = (i < b.size()) ? b.get(i) : a.get(k++);
+            i++;
+        }
+        return Objects.equals(aL, bL) ? aL : null;
+    }
+
     public static void main(String[] args) {
         List<Integer> firstList = List.of(4, 1, 8, 4, 5);
         LinkedList<Integer> first = new LinkedList<>(firstList);
-        List<Integer> secondList = List.of(5, 6, 1, 8, 4, 5);
+        List<Integer> secondList = List.of(9, 6, 1, 8, 4, 5);
         LinkedList<Integer> second = new LinkedList<>(secondList);
         List<Integer> thirdList = List.of(3, 4, 5);
         LinkedList<Integer> third = new LinkedList<>(thirdList);
@@ -47,13 +62,13 @@ public class IntersectionOfTwoLinkedList {
 
         headA.next = node1;
         node1.next = node2;
+        node2.next = node4;
 
         headB.next = node3;
         node3.next = node1;
-        node2.next = node4;
 
-        System.out.println(new IntersectionOfTwoLinkedList().solution(first, second));
-        System.out.println(new IntersectionOfTwoLinkedList().solution(fourth, third));
+        System.out.println(new IntersectionOfTwoLinkedList().solution3(first, second));
+        System.out.println(new IntersectionOfTwoLinkedList().solution3(fourth, third));
         System.out.println("Node version: " + new IntersectionOfTwoLinkedList().solution2(headA, headB).val);
     }
 }
