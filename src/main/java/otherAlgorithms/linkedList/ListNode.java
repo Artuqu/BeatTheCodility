@@ -1,13 +1,35 @@
 package otherAlgorithms.linkedList;
 
-public class ListNode {
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class ListNode<T extends Comparable<T>> {
+    @Setter(AccessLevel.NONE)
+    T val;
+    ListNode<T> next;
+    ListNode<T> prev;
 
-    int val;
-    ListNode next;
-
-    public ListNode(int val) {
+    public ListNode(T val) {
         this.val = val;
-        next = null;
+        this.next = null;
+    }
+
+    public ListNode(T val, ListNode<T> next, ListNode<T> prev) {
+        this.val = val;
+        this.next = next;
+        this.prev = prev;
+    }
+
+    public ListNode() {
+    }
+
+    @Override
+    public String toString() {
+        return "ListNode{" +
+                "val=" + val +
+                '}';
     }
 }
