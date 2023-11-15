@@ -5,14 +5,15 @@ public class ReversedDoublyLinkedList {
 
     public ListNode<Integer> solution(ListNode<Integer> head) {
         ListNode<Integer> curr = head;
+        ListNode<Integer> prev = null;
         while (curr != null) {
             ListNode<Integer> nextTemp = curr.getNext();
             curr.setNext(curr.getPrev());
             curr.setPrev(nextTemp);
+            prev = curr;
             curr = curr.getPrev();
-            if (curr != null) head = curr;
         }
-        return head;
+        return prev;
     }
 
     public void printLinkedList(ListNode<Integer> head) {
@@ -47,6 +48,5 @@ public class ReversedDoublyLinkedList {
         System.out.print("\nReversed list: ");
         ListNode<Integer> solution = new ReversedDoublyLinkedList().solution(head);
         new ReversedDoublyLinkedList().printLinkedList(solution);
-
     }
 }
