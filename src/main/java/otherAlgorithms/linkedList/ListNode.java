@@ -14,7 +14,11 @@ public class ListNode<T extends Comparable<T>> {
 
     public ListNode(T val) {
         this.val = val;
-        this.next = null;
+    }
+
+    public ListNode(T val, ListNode<T> next) {
+        this.val = val;
+        this.next = next;
     }
 
     public ListNode(T val, ListNode<T> next, ListNode<T> prev) {
