@@ -17,6 +17,18 @@ public class LastNodeToFront {
         return last;
     }
 
+    public ListNode<Integer> onlyTail(ListNode<Integer> head) {
+        ListNode<Integer> curr = head;
+        while (curr.getNext().getNext() != null) {
+            curr = curr.getNext();
+        }
+        ListNode<Integer> lastNode = curr.getNext();
+        curr.setNext(null);
+        lastNode.setNext(head);
+        head = lastNode;
+        return head;
+    }
+
 
     public static void main(String[] args) {
         ListNode<Integer> head = new ListNode<>(7);
@@ -36,7 +48,9 @@ public class LastNodeToFront {
         node5.next = node6;
         node6.next = node7;
 
-        ListNode<Integer> solution = new LastNodeToFront().solution(head);
-       new ReversedDoublyLinkedList().printLinkedList(solution);
+        ListNode<Integer> solution2 = new LastNodeToFront().onlyTail(head);
+//        ListNode<Integer> solution = new LastNodeToFront().solution(head);
+//        new ReversedDoublyLinkedList().printLinkedList(solution);
+        new ReversedDoublyLinkedList().printLinkedList(solution2);
     }
 }
