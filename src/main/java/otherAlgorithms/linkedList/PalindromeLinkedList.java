@@ -1,5 +1,7 @@
 package otherAlgorithms.linkedList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
 
@@ -17,6 +19,19 @@ public class PalindromeLinkedList {
         return stack.isEmpty();
     }
 
+    public boolean solution2(ListNode<Integer> head) {
+        List<Integer> list = new ArrayList<>();
+        while (head != null) {
+            list.add(head.val);
+            head = head.next;
+        }
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) != list.get(list.size() - 1 - i)) return false;
+        }
+        return true;
+    }
+
+
     public static void main(String[] args) {
         ListNode<Integer> head = new ListNode<>(1);
         ListNode<Integer> node1 = new ListNode<>(2);
@@ -27,7 +42,7 @@ public class PalindromeLinkedList {
         node1.setNext(node2);
         node2.setNext(node3);
 
-        System.out.println(new PalindromeLinkedList().solution(head));
+        System.out.println(new PalindromeLinkedList().solution2(head));
 
     }
 }
