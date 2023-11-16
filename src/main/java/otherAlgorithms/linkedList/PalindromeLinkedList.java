@@ -25,10 +25,35 @@ public class PalindromeLinkedList {
             list.add(head.val);
             head = head.next;
         }
-        for (int i = 0; i < list.size(); i++) {
+        if (list.size() == 1) return true;
+        for (int i = 0; i < list.size() / 2; i++) {
             if (list.get(i) != list.get(list.size() - 1 - i)) return false;
         }
         return true;
+    }
+
+    public boolean solution3(ListNode<Integer> head) {
+        String s = getString(head);
+        if (s.isEmpty()) return false;
+        if (s.length() == 1) return true;
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    private String getString(ListNode<Integer> head) {
+        ListNode<Integer> node = head;
+        StringBuilder sb = new StringBuilder();
+        while (node != null) {
+            sb.append(node.val);
+            node = node.getNext();
+        }
+        return sb.toString();
     }
 
 
@@ -42,7 +67,7 @@ public class PalindromeLinkedList {
         node1.setNext(node2);
         node2.setNext(node3);
 
-        System.out.println(new PalindromeLinkedList().solution2(head));
+        System.out.println(new PalindromeLinkedList().solution3(head));
 
     }
 }
