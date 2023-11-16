@@ -46,6 +46,22 @@ public class PalindromeLinkedList {
         return true;
     }
 
+    private ListNode<Integer> frontPointer;
+
+    public boolean recursiveCheck(ListNode<Integer> head) {
+        if (head != null) {
+            if (!recursiveCheck(head.next)) return false;
+            if (head.val != frontPointer.val) return false;
+            frontPointer = frontPointer.next;
+        }
+        return true;
+    }
+
+    public boolean solution4(ListNode<Integer> head) {
+        frontPointer = head;
+        return recursiveCheck(head);
+    }
+
     private String getString(ListNode<Integer> head) {
         ListNode<Integer> node = head;
         StringBuilder sb = new StringBuilder();
@@ -67,7 +83,7 @@ public class PalindromeLinkedList {
         node1.setNext(node2);
         node2.setNext(node3);
 
-        System.out.println(new PalindromeLinkedList().solution3(head));
+        System.out.println(new PalindromeLinkedList().solution4(head));
 
     }
 }
