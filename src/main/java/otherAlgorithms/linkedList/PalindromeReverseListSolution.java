@@ -17,6 +17,7 @@ public class PalindromeReverseListSolution {
             p1 = p1.getNext();
             p2 = p2.getNext();
         }
+//        back to original list
         firstHalfEnd.setNext(reverseList(secondHalfStart));
         return result;
     }
