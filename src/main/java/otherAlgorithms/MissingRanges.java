@@ -23,7 +23,6 @@ public class MissingRanges {
                 firstNumber = lower;
                 firstPointer--;
             }
-
             int secondPointer = secondList.get(i + 1);
             int secondNumber = secondPointer - 1;
             if (secondPointer == upper) secondNumber = upper;
@@ -41,15 +40,39 @@ public class MissingRanges {
         return result;
     }
 
+    public List<String> solution2(int[] numbers, int lower, int upper) {
+        List<String> result = new ArrayList<>();
+        if (numbers.length == 0) return result;
+        int prevPointer = lower - 1;
+        for (int i = 0; i <= numbers.length; i++) {
+            int curr = i < numbers.length ? numbers[i] : upper + 1;
+            String rs = build(prevPointer + 1, curr - 1);
+            if (rs != null) result.add(rs);
+            prevPointer = curr;
+        }
+        return result;
+    }
+
+    public String build(int lower, int upper) {
+        if (lower > upper) return null;
+        else if (lower == upper) return String.valueOf(lower);
+        else return lower + "->" + upper;
+    }
+
     public static void main(String[] args) {
         int[] numbers1 = new int[]{0, 1, 3, 50, 75};
         int[] numbers2 = new int[]{-1};
         int[] numbers3 = new int[]{};
         int[] numbers4 = new int[]{1, 4, 5, 10, 12};
         System.out.println(new MissingRanges().solution(numbers1, -2, 99));
+        System.out.println(new MissingRanges().solution2(numbers1, -2, 99));
         System.out.println(new MissingRanges().solution(numbers2, -1, 3));
+        System.out.println(new MissingRanges().solution2(numbers2, -1, 3));
         System.out.println(new MissingRanges().solution(numbers3, -1, -1));
+        System.out.println(new MissingRanges().solution2(numbers3, -1, -1));
         System.out.println(new MissingRanges().solution(numbers2, -1, -1));
+        System.out.println(new MissingRanges().solution2(numbers2, -1, -1));
         System.out.println(new MissingRanges().solution(numbers4, -2, 17));
+        System.out.println(new MissingRanges().solution2(numbers4, -2, 17));
     }
 }
