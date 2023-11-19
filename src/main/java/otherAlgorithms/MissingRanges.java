@@ -66,12 +66,16 @@ public class MissingRanges {
         int[] numbers4 = new int[]{1, 4, 5, 10, 12};
         System.out.println(new MissingRanges().solution(numbers1, -2, 99));
         System.out.println(new MissingRanges().solution2(numbers1, -2, 99));
+//
         System.out.println(new MissingRanges().solution(numbers2, -1, 3));
         System.out.println(new MissingRanges().solution2(numbers2, -1, 3));
+
         System.out.println(new MissingRanges().solution(numbers3, -1, -1));
         System.out.println(new MissingRanges().solution2(numbers3, -1, -1));
+
         System.out.println(new MissingRanges().solution(numbers2, -1, -1));
         System.out.println(new MissingRanges().solution2(numbers2, -1, -1));
+
         System.out.println(new MissingRanges().solution(numbers4, -2, 17));
         System.out.println(new MissingRanges().solution2(numbers4, -2, 17));
     }
