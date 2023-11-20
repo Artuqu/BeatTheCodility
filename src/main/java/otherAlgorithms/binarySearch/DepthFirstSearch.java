@@ -17,6 +17,17 @@ public class DepthFirstSearch {
         }
     }
 
+    public void inorder(TreeNode<Integer> root) {
+        Deque<TreeNode<Integer>> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> curr = queue.poll();
+            if (curr.getLeft() != null) inorder(curr.getLeft());
+            System.out.print(curr.getVal() + " ");
+            if (curr.getRight() != null) inorder(curr.getRight());
+        }
+    }
+
 
     public static void main(String[] args) {
         TreeNode<Integer> root = new TreeNode<>(1);
