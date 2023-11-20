@@ -28,6 +28,16 @@ public class DepthFirstSearch {
         }
     }
 
+    public void postorder(TreeNode<Integer> root) {
+        Deque<TreeNode<Integer>> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> curr = queue.poll();
+            if (curr.getLeft() != null) postorder(curr.getLeft());
+            if (curr.getRight() != null) postorder(curr.getRight());
+            System.out.print(curr.getVal() + " ");
+        }
+    }
 
     public static void main(String[] args) {
         TreeNode<Integer> root = new TreeNode<>(1);
@@ -48,5 +58,9 @@ public class DepthFirstSearch {
         leaf3.setRight(leaf7);
 
         new DepthFirstSearch().preorder(root);
+        System.out.println();
+        new DepthFirstSearch().inorder(root);
+        System.out.println();
+        new DepthFirstSearch().postorder(root);
     }
 }
