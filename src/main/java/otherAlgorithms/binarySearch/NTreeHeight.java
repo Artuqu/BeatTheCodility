@@ -55,6 +55,6 @@ public class NTreeHeight {
         node6.setChildren(List.of(node7, node8, node9));
 
         System.out.println(new NTreeHeight().solution(root));
-//        System.out.println(new NTreeHeight().solution2(root));
+        System.out.println(new NTreeHeight().solution2(root));
     }
 }
