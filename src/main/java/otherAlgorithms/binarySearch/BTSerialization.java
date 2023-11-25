@@ -1,5 +1,8 @@
 package otherAlgorithms.binarySearch;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class BTSerialization {
 
     public void serializePreOrder(TreeNode<Integer> node, StringBuilder treeStr) {
@@ -21,6 +24,7 @@ public class BTSerialization {
         serializePostOrder(node.getRight(), treeStr);
         treeStr.append("^").append(node.getVal());
     }
+
     public void serializeInOrder(TreeNode<Integer> node, StringBuilder treeStr) {
         if (node == null) {
             treeStr.append("#");
@@ -29,6 +33,19 @@ public class BTSerialization {
         serializePostOrder(node.getLeft(), treeStr);
         treeStr.append("^").append(node.getVal());
         serializePostOrder(node.getRight(), treeStr);
+    }
+
+    public void serializeLevelOrder(TreeNode<Integer> node, StringBuilder treeStr) {
+        Deque<TreeNode<Integer>> queue = new ArrayDeque<>();
+        queue.add(node);
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> curr = queue.poll();
+            treeStr.append("^").append(curr.getVal());
+            if (curr.getLeft() != null) queue.add(curr.getLeft());
+            else treeStr.append("#");
+            if (curr.getRight() != null) queue.add(curr.getRight());
+            else treeStr.append("#");
+        }
     }
 
     public static void main(String[] args) {
@@ -47,5 +64,8 @@ public class BTSerialization {
         sb = new StringBuilder();
         new BTSerialization().serializeInOrder(p1Root, sb);
         System.out.println("In order: " + sb);
+        sb = new StringBuilder();
+        new BTSerialization().serializeLevelOrder(p1Root, sb);
+        System.out.println("Level Order: " + sb);
     }
 }
