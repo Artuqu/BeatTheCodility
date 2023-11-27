@@ -1,6 +1,8 @@
 package otherAlgorithms.binarySearch;
 
 public class SubTree {
+
+    //    DFS solution O(N*M) time complexity
     public boolean solution(TreeNode<Integer> root, TreeNode<Integer> root2) {
         if (root == null) return false;
         if (isIdentical(root, root2)) return true;
@@ -10,6 +12,29 @@ public class SubTree {
     private boolean isIdentical(TreeNode<Integer> root, TreeNode<Integer> root2) {
         if (root == null || root2 == null) return root == null && root2 == null;
         return root.getVal() == root2.getVal() && isIdentical(root.getLeft(), root2.getLeft()) && isIdentical(root.getRight(), root2.getRight());
+    }
+
+//    String serialization solution O (N+M) time complexity
+
+    public boolean solution2(TreeNode<Integer> root, TreeNode<Integer> root2) {
+        StringBuilder sb = new StringBuilder();
+        String mainTree = buildTreeString(root, sb);
+        sb = new StringBuilder();
+        String subTree = buildTreeString(root2, sb);
+        if (mainTree.isEmpty()) return false;
+        return mainTree.contains(subTree);
+    }
+
+
+    private String buildTreeString(TreeNode<Integer> root, StringBuilder sb) {
+        if (root == null) {
+            sb.append("#");
+        } else {
+            sb.append("^").append(root.getVal());
+            buildTreeString(root.getLeft(), sb);
+            buildTreeString(root.getRight(), sb);
+        }
+        return sb.toString();
     }
 
 
@@ -46,7 +71,7 @@ public class SubTree {
         node23.setRight(node26);
 
         System.out.println(new SubTree().solution(root, root2));
-
+        System.out.println(new SubTree().solution2(root, root2));
 
     }
 }
