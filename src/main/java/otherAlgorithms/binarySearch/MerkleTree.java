@@ -17,11 +17,10 @@ public class MerkleTree {
         if (hashList.size() == 1) return hashList;
 
         List<String> parentHashList = new ArrayList<>();
-        for (int i = 0; i < hashList.size(); i += 2) {
-            if (i != hashList.size() - 1) {
-                String hashedString = getSHA(hashList.get(i).concat(hashList.get(i + 1)));
-                parentHashList.add(hashedString);
-            }
+
+        for (int i = 0; i < hashList.size() - 1; i += 2) {
+            String hashedString = getSHA(hashList.get(i).concat(hashList.get(i + 1)));
+            parentHashList.add(hashedString);
         }
         if (hashList.size() % 2 == 1) {
             String lastHash = hashList.get(hashList.size() - 1);
