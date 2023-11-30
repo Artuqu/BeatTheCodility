@@ -1,5 +1,6 @@
 package otherAlgorithms.binarySearch;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -18,7 +19,8 @@ public class SymmetricTree {
         return root1.getVal() == root2.getVal() && searchTree(root1.getLeft(), root2.getRight())
                 && searchTree(root1.getRight(), root2.getLeft());
     }
-// DFS solution
+
+    // DFS solution
     public boolean solution2(TreeNode<Integer> root) {
         Deque<TreeNode<Integer>> queue = new LinkedList<>();
         queue.add(root);
@@ -36,6 +38,28 @@ public class SymmetricTree {
         }
         return true;
     }
+
+    public boolean solution3(TreeNode<Integer> root) {
+        Deque<TreeNode<Integer>> queue = new ArrayDeque<>();
+        queue.add(root);
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> r1 = queue.poll();
+            TreeNode<Integer> r2 = queue.poll();
+            if (r1.getVal() != r2.getVal()) return false;
+
+            if (r1.getLeft() != null && r2.getRight() != null) {
+                queue.add(r1.getLeft());
+                queue.add(r2.getRight());
+            } else if (r1.getLeft() != null || r2.getRight() != null)
+                return false;
+            if (r1.getRight() != null && r2.getLeft() != null) {
+                queue.add(r1.getRight());
+                queue.add(r2.getLeft());
+            } else if (r1.getRight() != null || r2.getLeft() != null) return false;
+    }
+        return true;
+}
 
     public static void main(String[] args) {
         TreeNode<Integer> root = new TreeNode<>(1);
@@ -67,6 +91,9 @@ public class SymmetricTree {
         System.out.println();
         System.out.println(new SymmetricTree().solution2(root));
         System.out.println(new SymmetricTree().solution2(root2));
+        System.out.println();
+        System.out.println(new SymmetricTree().solution3(root));
+        System.out.println(new SymmetricTree().solution3(root2));
 
 
     }
