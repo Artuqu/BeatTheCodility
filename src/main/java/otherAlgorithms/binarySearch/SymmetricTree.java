@@ -1,17 +1,40 @@
 package otherAlgorithms.binarySearch;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class SymmetricTree {
 
 
     public boolean solution(TreeNode<Integer> root) {
         return searchTree(root, root);
     }
-// DFS solution
+
+    // DFS solution
     private boolean searchTree(TreeNode<Integer> root1, TreeNode<Integer> root2) {
         if (root1 == null && root2 == null) return true;
         if (root1 == null || root2 == null) return false;
         return root1.getVal() == root2.getVal() && searchTree(root1.getLeft(), root2.getRight())
                 && searchTree(root1.getRight(), root2.getLeft());
+    }
+// DFS solution
+    public boolean solution2(TreeNode<Integer> root) {
+        Deque<TreeNode<Integer>> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode<Integer> r1 = queue.poll();
+            TreeNode<Integer> r2 = queue.poll();
+            if (r1 == null && r2 == null) continue;
+            if (r1 == null || r2 == null) return false;
+            if (r1.getVal() != r2.getVal()) return false;
+            queue.add(r1.getLeft());
+            queue.add(r2.getRight());
+            queue.add(r1.getRight());
+            queue.add(r2.getLeft());
+        }
+        return true;
     }
 
     public static void main(String[] args) {
@@ -41,6 +64,9 @@ public class SymmetricTree {
 
         System.out.println(new SymmetricTree().solution(root));
         System.out.println(new SymmetricTree().solution(root2));
+        System.out.println();
+        System.out.println(new SymmetricTree().solution2(root));
+        System.out.println(new SymmetricTree().solution2(root2));
 
 
     }
