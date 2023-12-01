@@ -15,12 +15,12 @@ public class BSTvalidation {
         if (getCounter > -1) {
             int first = list.get(getCounter);
             for (int i = counter; i < list.size(); i++) {
-                if (first > list.get(i)) return false;
+                if (first >= list.get(i)) return false;
                 first = list.get(i);
             }
         }
-        counter++;
-        getCounter++;
+        getCounter = list.size() - 3;
+        counter = list.size() - 2;
         return true;
     }
 
@@ -37,8 +37,20 @@ public class BSTvalidation {
         }
     }
 
+    //    valid range solution
+    public boolean solution2(TreeNode<Integer> root) {
+        return validateBST(root, null, null);
+    }
+
+    private boolean validateBST(TreeNode<Integer> root, Integer low, Integer high) {
+        if (root == null) return true;
+        if (low != null && low >= root.getVal() || high != null && high <= root.getVal()) return false;
+
+        return validateBST(root.getRight(), root.getVal(), high) && validateBST(root.getLeft(), low, root.getVal());
+    }
+
     public static void main(String[] args) {
-        TreeNode<Integer> firstRoot = new TreeNode<>(8);
+        TreeNode<Integer> valid = new TreeNode<>(8);
         TreeNode<Integer> firstNode1 = new TreeNode<>(3);
         TreeNode<Integer> firstNode2 = new TreeNode<>(10);
         TreeNode<Integer> firstNode3 = new TreeNode<>(1);
@@ -48,8 +60,8 @@ public class BSTvalidation {
         TreeNode<Integer> firstNode7 = new TreeNode<>(7);
         TreeNode<Integer> firstNode8 = new TreeNode<>(13);
 
-        firstRoot.setLeft(firstNode1);
-        firstRoot.setRight(firstNode2);
+        valid.setLeft(firstNode1);
+        valid.setRight(firstNode2);
         firstNode1.setLeft(firstNode3);
         firstNode1.setRight(firstNode4);
         firstNode2.setRight(firstNode5);
@@ -57,7 +69,7 @@ public class BSTvalidation {
         firstNode4.setRight(firstNode7);
         firstNode5.setLeft(firstNode8);
 
-        TreeNode<Integer> secondRoot = new TreeNode<>(8);
+        TreeNode<Integer> notValid = new TreeNode<>(8);
         TreeNode<Integer> secondNode1 = new TreeNode<>(3);
         TreeNode<Integer> secondNode2 = new TreeNode<>(10);
         TreeNode<Integer> secondNode3 = new TreeNode<>(1);
@@ -67,8 +79,8 @@ public class BSTvalidation {
         TreeNode<Integer> secondNode7 = new TreeNode<>(7);
         TreeNode<Integer> secondNode8 = new TreeNode<>(9);
 
-        secondRoot.setLeft(secondNode1);
-        secondRoot.setRight(secondNode2);
+        notValid.setLeft(secondNode1);
+        notValid.setRight(secondNode2);
         secondNode1.setLeft(secondNode3);
         secondNode1.setRight(secondNode4);
         secondNode2.setLeft(secondNode7);
@@ -77,7 +89,10 @@ public class BSTvalidation {
         secondNode4.setRight(secondNode7);
         secondNode5.setLeft(secondNode8);
 
-        System.out.println(new BSTvalidation().solution(firstRoot));
-        System.out.println(new BSTvalidation().solution(secondRoot));
+        System.out.println(new BSTvalidation().solution(valid));
+        System.out.println(new BSTvalidation().solution(notValid));
+
+        System.out.println(new BSTvalidation().solution2(valid));
+        System.out.println(new BSTvalidation().solution2(notValid));
     }
 }
