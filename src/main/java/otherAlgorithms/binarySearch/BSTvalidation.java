@@ -69,6 +69,24 @@ public class BSTvalidation {
         return true;
     }
 
+    //    iterative in-order
+    public boolean solution4(TreeNode<Integer> root) {
+        Deque<TreeNode<Integer>> stack = new ArrayDeque<>();
+        Integer prev = null;
+        while (!stack.isEmpty() || root != null) {
+            while (root != null){
+                stack.push(root);
+                root = root.getLeft();
+            }
+            root = stack.pop();
+            if (prev != null && root.getVal() <= prev) return false;
+            prev = root.getVal();
+            System.out.print(prev + " ");
+            root = root.getRight();
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         TreeNode<Integer> valid = new TreeNode<>(8);
         TreeNode<Integer> firstNode1 = new TreeNode<>(3);
@@ -119,5 +137,9 @@ public class BSTvalidation {
 
         System.out.println(new BSTvalidation().solution3(valid));
         System.out.println(new BSTvalidation().solution3(notValid));
+        System.out.println();
+
+        System.out.println(new BSTvalidation().solution4(valid));
+        System.out.println(new BSTvalidation().solution4(notValid));
     }
 }
