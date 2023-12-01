@@ -15,7 +15,7 @@ public class BSTvalidation {
         if (getCounter > -1) {
             int first = list.get(getCounter);
             for (int i = counter; i < list.size(); i++) {
-                if (first >= list.get(i)) return false;
+                if (first > list.get(i)) return false;
                 first = list.get(i);
             }
         }
@@ -33,6 +33,7 @@ public class BSTvalidation {
             if (curr.getLeft() != null) solution(curr.getLeft());
             currVal = curr.getVal();
             list.add(currVal);
+            System.out.print(currVal + " ");
             if (curr.getRight() != null) solution(curr.getRight());
         }
     }
@@ -45,8 +46,27 @@ public class BSTvalidation {
     private boolean validateBST(TreeNode<Integer> root, Integer low, Integer high) {
         if (root == null) return true;
         if (low != null && low >= root.getVal() || high != null && high <= root.getVal()) return false;
-
+        System.out.print(root.getVal() + " ");
         return validateBST(root.getRight(), root.getVal(), high) && validateBST(root.getLeft(), low, root.getVal());
+    }
+
+    //    DFS Inorder improved
+
+    private Integer prev;
+
+    public boolean solution3(TreeNode<Integer> root) {
+        prev = null;
+        return secondInorder(root);
+    }
+
+    private boolean secondInorder(TreeNode<Integer> root) {
+        if (root == null) return true;
+        if (!secondInorder(root.getLeft())) return false;
+        if (prev != null && root.getVal() <= prev) return false;
+        prev = root.getVal();
+        System.out.print(root.getVal() + " ");
+        if (!secondInorder(root.getRight())) return false;
+        return true;
     }
 
     public static void main(String[] args) {
@@ -91,8 +111,13 @@ public class BSTvalidation {
 
         System.out.println(new BSTvalidation().solution(valid));
         System.out.println(new BSTvalidation().solution(notValid));
+        System.out.println();
 
         System.out.println(new BSTvalidation().solution2(valid));
         System.out.println(new BSTvalidation().solution2(notValid));
+        System.out.println();
+
+        System.out.println(new BSTvalidation().solution3(valid));
+        System.out.println(new BSTvalidation().solution3(notValid));
     }
 }
