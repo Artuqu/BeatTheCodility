@@ -6,12 +6,18 @@ public class BreadthFirstSearch {
 
     public void solution(TreeNode<Integer> root) {
         Deque<TreeNode<Integer>> queue = new ArrayDeque<>();
+        List<Integer> list = new ArrayList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
             TreeNode<Integer> curr = queue.poll();
+            list.add(curr.getVal());
             System.out.print(curr.getVal() + " ");
             if (curr.getLeft() != null) queue.add(curr.getLeft());
             if (curr.getRight() != null) queue.add(curr.getRight());
+        }
+        System.out.println("\nData saved in ArrayList:");
+        for (Integer i : list) {
+            System.out.print(i + " ");
         }
     }
 

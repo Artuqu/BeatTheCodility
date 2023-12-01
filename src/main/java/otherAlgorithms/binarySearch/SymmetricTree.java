@@ -3,7 +3,6 @@ package otherAlgorithms.binarySearch;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class SymmetricTree {
 
@@ -57,9 +56,9 @@ public class SymmetricTree {
                 queue.add(r1.getRight());
                 queue.add(r2.getLeft());
             } else if (r1.getRight() != null || r2.getLeft() != null) return false;
-    }
+        }
         return true;
-}
+    }
 
     public static void main(String[] args) {
         TreeNode<Integer> root = new TreeNode<>(1);
@@ -94,7 +93,5 @@ public class SymmetricTree {
         System.out.println();
         System.out.println(new SymmetricTree().solution3(root));
         System.out.println(new SymmetricTree().solution3(root2));
-
-
     }
 }
