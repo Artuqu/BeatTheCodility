@@ -1,6 +1,9 @@
 package otherAlgorithms.graph;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
 public class ListGraph {
 
@@ -21,6 +24,25 @@ public class ListGraph {
         list[i].add(j);
         list[j].add(i);
         E++;
+    }
+
+    public void BFS(int n) {
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> visited = new HashSet<>();
+        queue.add(n);
+        visited.add(n);
+        System.out.print("BFS Graph: ");
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            System.out.print(v + " ");
+            for (int i = 0; i < list[v].size(); i++) {
+                int s = list[v].get(i);
+                if (!visited.contains(s)) {
+                    queue.add(s);
+                    visited.add(s);
+                }
+            }
+        }
     }
 
     @Override

@@ -17,5 +17,6 @@ public class GraphApp {
         list.addEdge(3, 0);
         list.addEdge(3, 1);
         System.out.println(list);
+        list.BFS(0);
     }
 }
