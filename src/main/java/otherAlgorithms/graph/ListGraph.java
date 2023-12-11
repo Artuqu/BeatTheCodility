@@ -45,6 +45,20 @@ public class ListGraph {
         }
     }
 
+    public void DFS(int n) {
+        Set<Integer> visited = new HashSet<>();
+        System.out.print("DFS Graph: ");
+        DFS(n, visited);
+    }
+
+    private void DFS(int n, Set<Integer> visited) {
+        visited.add(n);
+        System.out.print(n + " ");
+        for (int s: list[n]){
+            if (!visited.contains(s)) DFS(s, visited);
+        }
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
