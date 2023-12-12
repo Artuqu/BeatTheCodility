@@ -22,5 +22,13 @@ public class GraphApp {
         list.DFS(0);
         System.out.println();
         list.stackDFS(0);
+
+        DirectedGraphPath<Integer> dgp = new DirectedGraphPath<>();
+        dgp.addEdge(1, 2);
+        dgp.addEdge(1, 3);
+        dgp.addEdge(4, 5);
+        System.out.println();
+        System.out.println(dgp.isPath(1, 3));
+        System.out.println(dgp.isPath(1, 5));
     }
 }
