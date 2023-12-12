@@ -20,5 +20,7 @@ public class GraphApp {
         list.BFS(0);
         System.out.println();
         list.DFS(0);
+        System.out.println();
+        list.stackDFS(0);
     }
 }

@@ -1,9 +1,6 @@
 package otherAlgorithms.graph;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 public class ListGraph {
 
@@ -54,8 +51,25 @@ public class ListGraph {
     private void DFS(int n, Set<Integer> visited) {
         visited.add(n);
         System.out.print(n + " ");
-        for (int s: list[n]){
+        for (int s : list[n]) {
             if (!visited.contains(s)) DFS(s, visited);
+        }
+    }
+
+    public void stackDFS(int n) {
+        Set<Integer> visited = new HashSet<>();
+        Stack<Integer> stack = new Stack<>();
+        stack.push(n);
+        System.out.print("DFS with Stack Graph: ");
+        while (!stack.isEmpty()) {
+            int number = stack.pop();
+            if (!visited.contains(number)) {
+                visited.add(number);
+                System.out.print(number + " ");
+                for (int i : list[number]) {
+                    if (!visited.contains(i)) stack.push(i);
+                }
+            }
         }
     }
 
