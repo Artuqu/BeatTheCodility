@@ -7,9 +7,8 @@ public class TreeSums {
     public List<List<Integer>> solution(int[] arr, int sum) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(arr);
-        if (arr[0] >= sum) return result;
         int sumOfTree;
-        for (int i = 0; i < arr.length - 2; i++) {
+        for (int i = 0; i < arr.length - 2 && arr[i] <= sum; i++) {
             int left = i + 1;
             int right = arr.length - 1;
             if (i > 0) {
@@ -31,11 +30,10 @@ public class TreeSums {
 
     public int[][] solution2(int[] arr, int sum) {
         Arrays.sort(arr);
-        if (arr[0] >= sum) return new int[0][];
         int[][] result = new int[arr.length][];
         int sumOfTree;
         int size = 0;
-        for (int i = 0; i < arr.length - 2; i++) {
+        for (int i = 0; i < arr.length - 2 && arr[i] <= sum; i++) {
             int left = i + 1;
             int right = arr.length - 1;
             if (i > 0) {
@@ -68,7 +66,7 @@ public class TreeSums {
 
     private void twoSum(int[] arr, int i, List<List<Integer>> result, int sum) {
         Set<Integer> cache = new HashSet<>();
-        for (int j = i + 1; j < arr.length; ++j) {
+        for (int j = i + 1; j < arr.length; j++) {
             int restOfThree = sum - arr[i] - arr[j];
             if (cache.contains(restOfThree)) {
                 result.add(Arrays.asList(arr[i], arr[j], restOfThree));
