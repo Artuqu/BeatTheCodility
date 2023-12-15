@@ -27,10 +27,33 @@ public class LongestUniqueSubstring {
         return counter;
     }
 
+    public int solution2(String s) {
+        Set<Character> cache = new HashSet<>();
+        int left = 0, right = 0, max = 0;
+
+        while (right < s.length()) {
+            if (!cache.contains(s.charAt(right))) {
+                cache.add(s.charAt(right));
+                right++;
+            } else {
+                cache.remove(s.charAt(right));
+                left++;
+            }
+            max = Math.max(max, right - left);
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
         System.out.println(new LongestUniqueSubstring().solution("abcdebifg"));
         System.out.println(new LongestUniqueSubstring().solution("ddabcabcbb"));
         System.out.println(new LongestUniqueSubstring().solution("abcabca"));
         System.out.println(new LongestUniqueSubstring().solution("aaaaaaa"));
+        System.out.println("second solution:");
+        System.out.println(new LongestUniqueSubstring().solution2("abcdebifg"));// wrong answer
+        System.out.println(new LongestUniqueSubstring().solution2("ddabcabcbb"));
+        System.out.println(new LongestUniqueSubstring().solution2("abcabca"));
+        System.out.println(new LongestUniqueSubstring().solution2("aaaaaaa"));
+
     }
 }
