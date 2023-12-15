@@ -1,6 +1,8 @@
 package otherAlgorithms.medium;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class LongestUniqueSubstring {
@@ -44,6 +46,21 @@ public class LongestUniqueSubstring {
         return max;
     }
 
+    public int solution3(String s) {
+        Map<Character, Integer> lastIndex = new HashMap<>();
+        int longest = 0, start = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (lastIndex.containsKey(c) && lastIndex.get(c) >= start) {
+                start = lastIndex.get(c);
+            }
+            lastIndex.put(c, i);
+
+            longest = Math.max(longest, i - start);
+        }
+        return longest;
+    }
+
     public static void main(String[] args) {
         System.out.println(new LongestUniqueSubstring().solution("abcdebifg"));
         System.out.println(new LongestUniqueSubstring().solution("ddabcabcbb"));
@@ -54,6 +71,11 @@ public class LongestUniqueSubstring {
         System.out.println(new LongestUniqueSubstring().solution2("ddabcabcbb"));
         System.out.println(new LongestUniqueSubstring().solution2("abcabca"));
         System.out.println(new LongestUniqueSubstring().solution2("aaaaaaa"));
+        System.out.println("third solution:");
+        System.out.println(new LongestUniqueSubstring().solution3("abcdebifg"));// correct
+        System.out.println(new LongestUniqueSubstring().solution3("ddabcabcbb"));
+        System.out.println(new LongestUniqueSubstring().solution3("abcabca"));
+        System.out.println(new LongestUniqueSubstring().solution3("aaaaaaa"));
 
     }
 }
