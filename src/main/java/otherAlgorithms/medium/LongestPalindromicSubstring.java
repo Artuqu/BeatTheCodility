@@ -26,9 +26,38 @@ public class LongestPalindromicSubstring {
         return j - i - 1;
     }
 
+    //    dynamic programming version
+    public String solution2(String s) {
+        if (s == null || s.isEmpty()) return "";
+        int n = s.length();
+        String longest = s.substring(0, 1);
+        boolean[][] dp = new boolean[n][n];
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = true;
+        }
+        for (int len = 2; len <= n; len++) {
+            for (int i = 0; i < n - len + 1; i++) {
+                int j = i + len - 1;
+                boolean compareCharacters = s.charAt(i) == s.charAt(j);
+                if (len == 2) dp[i][j] = compareCharacters;
+                else {
+                    dp[i][j] = (compareCharacters && dp[i + 1][j - 1]);
+                }
+//                update the longest palindromic substring if needed
+                if (dp[i][j] && len > longest.length()) longest = s.substring(i, j + 1);
+            }
+        }
+        return longest;
+    }
+
+
     public static void main(String[] args) {
         System.out.println(new LongestPalindromicSubstring().solution("abccba"));
         System.out.println(new LongestPalindromicSubstring().solution("abcdcba"));
         System.out.println(new LongestPalindromicSubstring().solution("abcdddefaa"));
+        System.out.println("Second solution:");
+        System.out.println(new LongestPalindromicSubstring().solution2("abccba"));
+        System.out.println(new LongestPalindromicSubstring().solution2("abcdcba"));
+        System.out.println(new LongestPalindromicSubstring().solution2("abcdddefaa"));
     }
 }
