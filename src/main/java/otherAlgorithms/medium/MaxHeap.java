@@ -55,8 +55,8 @@ public class MaxHeap {
     private void fixHeapBelow(int index, int lastIndex) {
         int childToSwap;
         while (index <= lastIndex) {
-            int leftChild = heap[getChild(index, true)];
-            int rightChild = heap[getChild(index, false)];
+            int leftChild = getChild(index, true);
+            int rightChild = getChild(index, false);
             if (leftChild <= lastIndex) {
 //                protection against out of bound exception
                 if (rightChild > lastIndex) {
@@ -71,6 +71,12 @@ public class MaxHeap {
                 } else break;
                 index = childToSwap;
             } else break;
+        }
+    }
+
+    public void printHeap() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(heap[i] + " ");
         }
     }
 }
