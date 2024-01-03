@@ -10,6 +10,9 @@ public class MaxHeap {
         size = 0;
     }
 
+    public MaxHeap() {
+    }
+
     public int getParent(int index) {
 //        array starts from index 0 not 1
         return (index - 1) / 2;

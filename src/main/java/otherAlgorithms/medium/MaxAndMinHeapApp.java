@@ -1,5 +1,6 @@
 package otherAlgorithms.medium;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -30,5 +31,12 @@ public class MaxAndMinHeapApp {
         for (int i = 0; i < 5; i++) {
             System.out.print(pqueue.poll() + " ");
         }
+        MinHeap minHeap = new MinHeap();
+        int[] arr = {60, 45, 35, 25, 12, 20, 10};  // 10 12 20 25 45 60 35
+        System.out.println();
+        minHeap.convertToMinHeap(arr);
+        System.out.println();
+        System.out.println(Arrays.toString(arr));
+
     }
 }
