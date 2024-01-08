@@ -5,11 +5,11 @@ import java.util.PriorityQueue;
 
 public class SmallestElementInASortedMatrix implements Comparator<HeapNode> {
     //    O(n)
-    public int solution(int[][] matrix, int position) {
+    public int solution(int[][] matrix, int k) {
         for (int i = 0; i < matrix.length; i++) {
-            if (position > matrix.length * i + matrix.length) continue;
+            if (k > matrix.length * i + matrix.length) continue;
             for (int j = 0; j < matrix.length; j++) {
-                if (i * (matrix.length) + j + 1 == position) return matrix[i][j];
+                if (i * (matrix.length) + j + 1 == k) return matrix[i][j];
             }
         }
         return -1;
@@ -32,16 +32,41 @@ public class SmallestElementInASortedMatrix implements Comparator<HeapNode> {
         return element.value;
     }
 
+    //    O(1)
+    public int solution3(int[][] matrix, int k) {
+        int matrixSize = matrix.length * matrix.length;
+        if (k > matrixSize || k <= 0) return -1;
+        int i = k / matrix.length;
+        int restOfK = k % matrix.length;
+
+        int j = restOfK > 0 ? restOfK - 1 : matrix.length - 1;
+        if (restOfK == 0) {
+            i--;
+        }
+
+        if (k <= matrix.length) {
+            return matrix[0][k - 1];
+        }
+        return matrix[i][j];
+    }
 
     public static void main(String[] args) {
         int[][] matrix1 = {{-5}};
         int[][] matrix3 = {{1, 2, 3}, {5, 6, 7}, {9, 10, 21}};
-        int[][] matrix4 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 21, 32}, {33, 34, 46, 77}};
+        int[][] matrix3s = {{1, 3, 7}, {5, 10, 12}, {6, 12, 15}};
+        int[][] matrix4 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {10, 12, 21, 32}, {33, 34, 46, 77}};
         System.out.println(new SmallestElementInASortedMatrix().solution(matrix1, 1));
+        System.out.println(new SmallestElementInASortedMatrix().solution2(matrix1, 1));
+        System.out.println(new SmallestElementInASortedMatrix().solution3(matrix1, 1));
         System.out.println(new SmallestElementInASortedMatrix().solution(matrix3, 8));
         System.out.println(new SmallestElementInASortedMatrix().solution2(matrix3, 8));
-        System.out.println(new SmallestElementInASortedMatrix().solution(matrix4, 15));
-        System.out.println(new SmallestElementInASortedMatrix().solution2(matrix4, 15));
+        System.out.println(new SmallestElementInASortedMatrix().solution3(matrix3, 8));
+        System.out.println(new SmallestElementInASortedMatrix().solution(matrix4, 12));
+        System.out.println(new SmallestElementInASortedMatrix().solution2(matrix4, 12));
+        System.out.println(new SmallestElementInASortedMatrix().solution3(matrix4, 12));
+        System.out.println(new SmallestElementInASortedMatrix().solution(matrix3s, 8));
+        System.out.println(new SmallestElementInASortedMatrix().solution2(matrix3s, 8));
+        System.out.println(new SmallestElementInASortedMatrix().solution3(matrix3s, 8));
     }
 
     @Override
