@@ -28,9 +28,8 @@ public class TopKFrequentElements {
         Arrays.sort(arr);
         Map<Integer, Integer> cache = new HashMap<>();
         List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
-            if (cache.containsKey(arr[i])) cache.put(arr[i], cache.get(arr[i]) + 1);
-            else cache.put(arr[i], 1);
+        for (int j : arr) {
+            cache.put(j, cache.getOrDefault(j, 0) + 1);
         }
         Set<Map.Entry<Integer, Integer>> entries = cache.entrySet();
         for (Map.Entry<Integer, Integer> map : entries) {
@@ -40,12 +39,34 @@ public class TopKFrequentElements {
         return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
+    public int[] solution3(int[] arr, int k) {
+        Arrays.sort(arr);
+        if (k == arr.length) return arr;
+        Map<Integer, Integer> cache = new HashMap<>();
+        for (int n : arr) {
+            cache.put(n, cache.getOrDefault(n, 0) + 1);
+        }
+        List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(cache.entrySet());
+        Collections.sort(entries, (e1, e2) -> e2.getValue() - e1.getValue());
+        List<Integer> result = new ArrayList<>();
+        for (int i = k - 1; i >= 0; i--) {
+            if (entries.get(i).getValue() >= k) result.add(entries.get(i).getKey());
+        }
+        return result.stream().mapToInt(Integer::intValue).toArray();
+    }
+
     public static void main(String[] args) {
         int[] arr = {1, 1, 2, 2, 2, 3};
         int[] arr2 = {1};
+        int[] arr3 = {1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 6};
         System.out.println(Arrays.toString(new TopKFrequentElements().solution(arr, 2)));
         System.out.println(Arrays.toString(new TopKFrequentElements().solution2(arr, 2)));
+        System.out.println(Arrays.toString(new TopKFrequentElements().solution3(arr, 2)));
         System.out.println(Arrays.toString(new TopKFrequentElements().solution(arr2, 1)));
         System.out.println(Arrays.toString(new TopKFrequentElements().solution2(arr2, 1)));
+        System.out.println(Arrays.toString(new TopKFrequentElements().solution3(arr2, 1)));
+        System.out.println(Arrays.toString(new TopKFrequentElements().solution(arr3, 3)));
+        System.out.println(Arrays.toString(new TopKFrequentElements().solution2(arr3, 3)));
+        System.out.println(Arrays.toString(new TopKFrequentElements().solution3(arr3, 3)));
     }
 }
