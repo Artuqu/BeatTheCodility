@@ -38,17 +38,45 @@ public class SmallestElementInASortedMatrix implements Comparator<HeapNode> {
         if (k > matrixSize || k <= 0) return -1;
         int i = k / matrix.length;
         int restOfK = k % matrix.length;
-
         int j = restOfK > 0 ? restOfK - 1 : matrix.length - 1;
         if (restOfK == 0) {
             i--;
         }
-
         if (k <= matrix.length) {
             return matrix[0][k - 1];
         }
         return matrix[i][j];
     }
+
+    //O(log n (max - min))
+    public int solution4(int[][] matrix, int k) {
+        int n = matrix.length;
+        int low = matrix[0][0];
+        int high = matrix[n - 1][n - 1];
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int count = getCount(matrix, mid);
+            if (count < k) low = mid + 1;
+            else high = mid - 1;
+        }
+        return low;
+    }
+
+    private int getCount(int[][] matrix, int mid) {
+        int count = 0;
+        int n = matrix.length;
+        int i = n - 1;
+        int j = 0;
+        while (i >= 0 && j < n) {
+            if (matrix[i][j] > mid) i--;
+            else {
+                count += i + 1;
+                j++;
+            }
+        }
+        return count;
+    }
+
 
     public static void main(String[] args) {
         int[][] matrix1 = {{-5}};
@@ -61,12 +89,15 @@ public class SmallestElementInASortedMatrix implements Comparator<HeapNode> {
         System.out.println(new SmallestElementInASortedMatrix().solution(matrix3, 8));
         System.out.println(new SmallestElementInASortedMatrix().solution2(matrix3, 8));
         System.out.println(new SmallestElementInASortedMatrix().solution3(matrix3, 8));
+        System.out.println(new SmallestElementInASortedMatrix().solution4(matrix3, 8));
         System.out.println(new SmallestElementInASortedMatrix().solution(matrix4, 12));
         System.out.println(new SmallestElementInASortedMatrix().solution2(matrix4, 12));
         System.out.println(new SmallestElementInASortedMatrix().solution3(matrix4, 12));
+        System.out.println(new SmallestElementInASortedMatrix().solution4(matrix4, 12));
         System.out.println(new SmallestElementInASortedMatrix().solution(matrix3s, 8));
         System.out.println(new SmallestElementInASortedMatrix().solution2(matrix3s, 8));
         System.out.println(new SmallestElementInASortedMatrix().solution3(matrix3s, 8));
+        System.out.println(new SmallestElementInASortedMatrix().solution4(matrix3s, 8));
     }
 
     @Override
