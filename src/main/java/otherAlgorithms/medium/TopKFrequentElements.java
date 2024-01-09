@@ -68,10 +68,8 @@ public class TopKFrequentElements {
             buckets[frequency].add(num);
         }
         List<Integer> result = new ArrayList<>();
-        for (int i = buckets.length - 1; i >= 0; i--) {
-            if (buckets[i] != null) {
-                if (i >= k) result.addAll(buckets[i]);
-            }
+        for (int i = buckets.length - 1; i >= k; i--) {
+            if (buckets[i] != null) result.addAll(buckets[i]);
         }
         return result.stream().mapToInt(Integer::intValue).toArray();
     }
