@@ -47,9 +47,9 @@ public class TopKFrequentElements {
             cache.put(n, cache.getOrDefault(n, 0) + 1);
         }
         List<Map.Entry<Integer, Integer>> entries = new ArrayList<>(cache.entrySet());
-        Collections.sort(entries, (e1, e2) -> e2.getValue() - e1.getValue());
+        entries.sort((e1, e2) -> e2.getValue() - e1.getValue());
         List<Integer> result = new ArrayList<>();
-        for (int i = k - 1; i >= 0; i--) {
+        for (int i = k; i >= 0; i--) {
             if (entries.get(i).getValue() >= k) result.add(entries.get(i).getKey());
         }
         return result.stream().mapToInt(Integer::intValue).toArray();
