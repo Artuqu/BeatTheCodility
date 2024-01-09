@@ -55,6 +55,27 @@ public class TopKFrequentElements {
         return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
+    public int[] solution4(int[] arr, int k) {
+        Arrays.sort(arr);
+        Map<Integer, Integer> cache = new HashMap<>();
+        for (int n : arr) {
+            cache.put(n, cache.getOrDefault(n, 0) + 1);
+        }
+        List<Integer>[] buckets = new List[arr.length + 1];
+        for (int num : cache.keySet()) {
+            int frequency = cache.get(num);
+            if (buckets[frequency] == null) buckets[frequency] = new ArrayList<>();
+            buckets[frequency].add(num);
+        }
+        List<Integer> result = new ArrayList<>();
+        for (int i = buckets.length - 1; i >= 0; i--) {
+            if (buckets[i] != null) {
+                if (i >= k) result.addAll(buckets[i]);
+            }
+        }
+        return result.stream().mapToInt(Integer::intValue).toArray();
+    }
+
     public static void main(String[] args) {
         int[] arr = {1, 1, 2, 2, 2, 3};
         int[] arr2 = {1};
@@ -68,5 +89,6 @@ public class TopKFrequentElements {
         System.out.println(Arrays.toString(new TopKFrequentElements().solution(arr3, 3)));
         System.out.println(Arrays.toString(new TopKFrequentElements().solution2(arr3, 3)));
         System.out.println(Arrays.toString(new TopKFrequentElements().solution3(arr3, 3)));
+        System.out.println(Arrays.toString(new TopKFrequentElements().solution4(arr3, 3)));
     }
 }
