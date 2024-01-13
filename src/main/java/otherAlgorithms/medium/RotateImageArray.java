@@ -46,11 +46,21 @@ public class RotateImageArray {
 
 
     public static void main(String[] args) {
-        int[][] arr = new int[][]{{5, 1, 9, 11, 22}, {2, 4, 8, 10, 23}, {13, 3, 6, 7, 24}, {15, 14, 12, 16, 25},
-                {33, 34, 35, 36, 37}};
-        int[][] arrS = new int[][]{{5, 1, 9, 11}, {2, 4, 8, 10}, {13, 3, 6, 7}, {15, 14, 12, 16}};
-        int[][] arr2 = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        int[][] arr2S = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        int[][] arr = new int[][]{{5,  1,  9,  11, 22},
+                                  {2,  4,  8,  10, 23},
+                                  {13, 3,  6,  7,  24},
+                                  {15, 14, 12, 16, 25},
+                                  {33, 34, 35, 36, 37}};
+        int[][] arrS = new int[][]{ {5,  1,  9,  11},
+                                    {2,  4,  8,  10},
+                                    {13, 3,  6,  7},
+                                    {15, 14, 12, 16}};
+        int[][] arr2 = new int[][]{ {1, 2, 3},
+                                    {4, 5, 6},
+                                    {7, 8, 9}};
+        int[][] arr2S = new int[][]{{1, 2, 3},
+                                    {4, 5, 6},
+                                    {7, 8, 9}};
 
         System.out.println(Arrays.deepToString(new RotateImageArray().solution(arr)));
         System.out.println(Arrays.deepToString(new RotateImageArray().solution(arr2)));

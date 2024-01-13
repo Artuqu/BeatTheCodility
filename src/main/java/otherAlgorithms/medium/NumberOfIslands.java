@@ -66,8 +66,14 @@ public class NumberOfIslands {
     }
 
     public static void main(String[] args) {
-        int[][] grid = {{1, 1, 0, 0, 0}, {1, 1, 0, 0, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 1, 1}};
-        int[][] grid2 = {{1, 1, 0, 0, 0}, {1, 1, 0, 0, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 1, 1}};
+        int[][] grid = {{1, 1, 0, 0, 0},
+                        {1, 1, 0, 0, 0},
+                        {0, 0, 1, 0, 0},
+                        {0, 0, 0, 1, 1}};
+        int[][] grid2 = {{1, 1, 0, 0, 0},
+                         {1, 1, 0, 0, 0},
+                         {0, 0, 1, 0, 0},
+                         {0, 0, 0, 1, 1}};
         System.out.println(new NumberOfIslands().solution(grid));
         System.out.println(new NumberOfIslands().solution2(grid2));
     }

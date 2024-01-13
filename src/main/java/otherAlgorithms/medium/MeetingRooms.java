@@ -1,5 +1,6 @@
 package otherAlgorithms.medium;
 
+import java.lang.ref.ReferenceQueue;
 import java.util.*;
 
 public class MeetingRooms {
@@ -33,8 +34,26 @@ public class MeetingRooms {
             if (interval[0] >= earliestEndTime) endTimes.poll();
             endTimes.offer(interval[1]);
         }
-
         return endTimes.size();
+    }
+
+    //Chronological order
+    public int solution3(int[][] intervals) {
+        if (intervals.length == 0 || intervals[0].length == 0) return 0;
+        int[] startPoint = new int[intervals.length];
+        int[] endPoint = new int[intervals.length];
+        for (int i = 0; i < intervals.length; i++) {
+            startPoint[i] = intervals[i][0];
+            endPoint[i] = intervals[i][1];
+        }
+        Arrays.sort(startPoint);
+        Arrays.sort(endPoint);
+        int rooms = 0;
+        for (int startIndex = 0, endIndex = 0; startIndex < intervals.length; startIndex++) {
+            if (startPoint[startIndex] < endPoint[endIndex]) rooms++;
+            else endIndex++;
+        }
+        return rooms;
     }
 
     public static void main(String[] args) {
@@ -52,6 +71,11 @@ public class MeetingRooms {
         System.out.println(new MeetingRooms().solution2(arr2));
         System.out.println(new MeetingRooms().solution2(arr3));
         System.out.println(new MeetingRooms().solution2(arr4));
+        System.out.println();
+        System.out.println(new MeetingRooms().solution3(arr));
+        System.out.println(new MeetingRooms().solution3(arr2));
+        System.out.println(new MeetingRooms().solution3(arr3));
+        System.out.println(new MeetingRooms().solution3(arr4));
 
     }
 }

@@ -83,6 +83,7 @@ public class SmallestElementInASortedMatrix implements Comparator<HeapNode> {
         int[][] matrix3 = {{1, 2, 3}, {5, 6, 7}, {9, 10, 21}};
         int[][] matrix3s = {{1, 3, 7}, {5, 10, 12}, {6, 12, 15}};
         int[][] matrix4 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {10, 12, 21, 32}, {33, 34, 46, 77}};
+
         System.out.println(new SmallestElementInASortedMatrix().solution(matrix1, 1));
         System.out.println(new SmallestElementInASortedMatrix().solution2(matrix1, 1));
         System.out.println(new SmallestElementInASortedMatrix().solution3(matrix1, 1));
