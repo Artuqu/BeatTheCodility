@@ -29,6 +29,7 @@ public class FindCelebrity {
         return aConnections[b] == 1;
     }
 
+
     public static void main(String[] args) {
         int[][] graph = {{1, 1, 0}, {0, 1, 0}, {1, 1, 1}};
         int[][] graph2 = {{1, 1, 0, 1}, {1, 0, 1, 1}, {1, 1, 1, 1}, {0, 0, 0, 1}};
